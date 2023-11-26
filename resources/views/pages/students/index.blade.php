@@ -28,19 +28,65 @@
                         <input class="form-control" name="Age" type="text" placeholder="Input Age">
                     </div>
 
-                   <div class="form-group">
-                        <input class="form-control" name="Status" type="text" placeholder="Input status">
-                    </div>
+
                 </div>
 
                 <div class="col lg 4">
                     <button class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
         </form>
+    </div>
+
+
+
+<div class="col lg 12 mt-5">
+    <div>
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"># </th>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Age</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($students as $key=> $student)
+
+                <tr>
+                    <th scope="row">{{ ++$key }}</th>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->image }}</td>
+                    <td>{{ $student->age }}</td>
+                    <td>
+                        @if ($student->status == 0 )
+                            <span class="badge bg-warning">Inactive</span>
+                        @else
+                        <span class="badge bg-success">Active</span>
+                        @endif
+                    </td>
+
+
+                    <td>
+                        <a href="{{ route('students.delete',$student->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i> </a>
+                        <a href="{{ route('students.active',$student->id) }}" class="btn btn-success"><i class="far fa-solid fa-eye"></i> </a>
+                    </td>
+
+
+                </tr>
+
+                @endforeach
+
+            </tbody>
+          </table>
 
     </div>
+</div>
+
 </div>
 
 @endsection
