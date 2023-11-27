@@ -11,7 +11,7 @@
 
 @include('components.nav')
     @yield('content')
-    
+
 @include('libraries.scripts')
 </body>
 </html>
