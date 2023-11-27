@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Students;
+use domain\Facades\Studentsfacade;
 use Illuminate\Http\Request;
+
 
 class StudentsController extends ParentController
 {
-    protected $student;
+    // protected $student;
 
     // public function __construct(){
     //     $this->student = new Students();
@@ -15,28 +17,25 @@ class StudentsController extends ParentController
     // }
 
     public function index(){
-        $response['students'] = Students::all();
+        $response['students'] = StudentsFacade::all();
         return view('pages.students.index')->with($response);
     }
 
 
     public function store(Request $request){
-        $this->student->create($request->all());
+       StudentsFacade::store($request->all());
         return redirect()->back();
         // return redirect()->route('home');
     }
 
 
     public function delete($student_id){
-        $student = $this->student->find($student_id);
-        $student->delete();
+        StudentsFacade::delete($student_id);
         return redirect()->back();
     }
 
     public function active($student_id){
-        $student = $this->student->find($student_id);
-        $student->status = 1;
-        $student->update();
+        StudentsFacade::active($student_id);
         return redirect()->back();
     }
 
