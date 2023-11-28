@@ -13,6 +13,5 @@ class Students extends Model
         'image',
         'age',
         'status',
-
     ];
 }
