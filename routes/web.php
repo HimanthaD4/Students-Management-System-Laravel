@@ -15,32 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/' , [HomeController::class,"index"])->name('home');
 
-
-
-
+//Student routes
 Route::prefix('/students')->group(function (){
-
     Route::get('/' , [StudentsController::class,"index"])->name('students');
     Route::post('/store' , [StudentsController::class,"store"])->name('students.store');
+    Route::get('/edit' , [StudentsController::class,"edit"])->name('students.edit');
+    Route::post('/{student_id}/update' , [StudentsController::class,"update"])->name('students.update');
     Route::get('/{student_id}/delete' , [StudentsController::class,"delete"])->name('students.delete');
     Route::get('/{student_id}/active' , [StudentsController::class,"active"])->name('students.active');
-
-
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });

@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 
 class StudentsController extends ParentController
 {
-    // protected $student;
-
-    // public function __construct(){
-    //     $this->student = new Students();
-
-    // }
 
     public function index(){
         $response['students'] = StudentsFacade::all();
@@ -23,10 +17,33 @@ class StudentsController extends ParentController
 
 
     public function store(Request $request){
-       StudentsFacade::store($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('Image')) {
+            $imagePath = $request->file('Image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        StudentsFacade::store($data);
+
         return redirect()->back();
-        // return redirect()->route('home');
     }
+
+
+
+
+    public function edit(Request $request){
+        $response['student'] = StudentsFacade::get($request['student_id']);
+        return view('pages.students.edit')->with($response);
+    }
+
+
+    public function update(Request $request,$student_id){
+        StudentsFacade::update($request->all(),$student_id);
+        return redirect()->back();
+    }
+
+
 
 
     public function delete($student_id){
@@ -38,6 +55,5 @@ class StudentsController extends ParentController
         StudentsFacade::active($student_id);
         return redirect()->back();
     }
-
 
 }
