@@ -1,35 +1,7 @@
-{{--  <form action="{{ route('students.update',$student->id) }}" method="post" enctype="multipart/form-data">
-
-    @csrf
-    <div class="row">
-        <div class="col lg 8">
-
-            <div class="form-group">
-                <input class="form-control" name="name"  value="{{ $student->name }}" type="text" placeholder="Input Name">
-            </div>
-
-            <div class="form-group">
-                <input class="form-control" name="Image" value="{{ $student->image }}" type="file" placeholder="Input Image">
-            </div>
-
-            <div class="form-group">
-                <input class="form-control" name="age" value="{{ $student->age }}" type="number" placeholder="Input Age">
-            </div>
-
-        </div>
-
-        <div class="col lg 4">
-            <button class="btn btn-primary">Update</button>
-        </div>
-    </div>
-</form>  --}}
-
-
 
 <form action="{{ route('students.update', $student->id) }}" method="post" enctype="multipart/form-data">
+
     @csrf
-
-
     <div class="row">
         <div class="col-lg-8">
             <div class="mb-3">
@@ -49,7 +21,8 @@
         </div>
 
         <div class="col-lg-4">
-            <!-- You can add a preview of the current image here if needed -->
+           <img src="https://img.freepik.com/premium-vector/girl-graduation-cap-sitting-around-pile-books-online-courses-distance-studying-self-education_460582-689.jpg"
+           alt="" width="150px">
         </div>
     </div>
 
